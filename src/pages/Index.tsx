@@ -31,6 +31,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+      {/* Header with Login */}
+      <header className="container mx-auto px-4 py-4 flex items-center justify-end max-w-6xl">
+        <Button variant="ghost" onClick={() => navigate('/login')}>Login</Button>
+      </header>
       {/* Hero Section */}
       <div className="container mx-auto px-4 py-16 max-w-6xl">
         <div className="text-center mb-16">
@@ -38,7 +42,7 @@ const Index = () => {
             <MessageCircleHeart className="w-10 h-10 text-white" />
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
-            Vibe Code
+            Acme Quarterly Peer Feedback
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-4 max-w-3xl mx-auto">
             Your quarterly peer feedback companion for Acme Inc.
@@ -85,7 +89,7 @@ const Index = () => {
         {/* Problem/Solution Section */}
         <Card className="mb-16 bg-gradient-to-r from-primary/10 via-accent/10 to-secondary/10 border-none">
           <CardHeader>
-            <CardTitle className="text-2xl">Why Vibe Code?</CardTitle>
+            <CardTitle className="text-2xl">Why Acme Quarterly Peer Feedback?</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
@@ -102,7 +106,7 @@ const Index = () => {
                 <CheckCircle2 className="text-success w-5 h-5" /> The Solution
               </h3>
               <p className="text-muted-foreground">
-                Vibe Code makes feedback simple, fast, and non-awkward. With structured formats (SBI), AI tone guidance, 
+                Acme Quarterly Peer Feedback makes feedback simple, fast, and non-awkward. With structured formats (SBI), AI tone guidance, 
                 anonymity options, and beautiful dashboards, everyone can give and receive meaningful insights quarterly.
               </p>
             </div>

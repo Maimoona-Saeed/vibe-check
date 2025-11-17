@@ -107,7 +107,7 @@ const AdminDashboard = () => {
             </div>
             <div>
               <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Vibe Code Admin
+                Acme Quarterly Peer Feedback Admin
               </h1>
               <p className="text-xs text-muted-foreground">HR Dashboard & Analytics</p>
             </div>
@@ -142,14 +142,6 @@ const AdminDashboard = () => {
             </Select>
           </div>
           <div className="flex items-center gap-2">
-            <Button variant="outline" size="sm" onClick={() => setViewMode(viewMode === "grid" ? "table" : "grid")}>
-              {viewMode === "grid" ? <List className="w-4 h-4 mr-2" /> : <Grid3x3 className="w-4 h-4 mr-2" />}
-              {viewMode === "grid" ? "Table View" : "Grid View"}
-            </Button>
-            <Button variant="outline" size="sm">
-              <Download className="w-4 h-4 mr-2" />
-              Export CSV
-            </Button>
           </div>
         </div>
 
@@ -266,11 +258,23 @@ const AdminDashboard = () => {
 
         {/* Main Analytics Tabs */}
         <Tabs defaultValue="departments" className="space-y-6">
-          <TabsList className="bg-muted/50">
-            <TabsTrigger value="departments">By Department</TabsTrigger>
-            <TabsTrigger value="trends">Quarterly Trends</TabsTrigger>
-            <TabsTrigger value="themes">Top Themes</TabsTrigger>
-          </TabsList>
+          <div className="flex items-center justify-between gap-3">
+            <TabsList className="bg-muted/50">
+              <TabsTrigger value="departments">By Department</TabsTrigger>
+              <TabsTrigger value="trends">Quarterly Trends</TabsTrigger>
+              <TabsTrigger value="themes">Top Themes</TabsTrigger>
+            </TabsList>
+            <div className="flex items-center gap-2">
+              <Button variant="outline" size="sm" onClick={() => setViewMode(viewMode === 'grid' ? 'table' : 'grid')}>
+                {viewMode === 'grid' ? <List className="w-4 h-4 mr-2" /> : <Grid3x3 className="w-4 h-4 mr-2" />}
+                {viewMode === 'grid' ? 'Table View' : 'Grid View'}
+              </Button>
+              <Button variant="outline" size="sm">
+                <Download className="w-4 h-4 mr-2" />
+                Export CSV
+              </Button>
+            </div>
+          </div>
 
           {/* Department Analytics */}
           <TabsContent value="departments">
