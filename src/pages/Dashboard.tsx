@@ -71,7 +71,7 @@ const Dashboard = () => {
             </div>
             <div>
               <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Vibe Code
+                Acme Quarterly Peer Feedback
               </h1>
               <p className="text-xs text-muted-foreground">Q1 2025 Reviews Open</p>
             </div>
@@ -241,7 +241,7 @@ const Dashboard = () => {
                         </div>
                         <p className="text-sm text-muted-foreground mt-1">Vibe Score</p>
                       </div>
-                      <Button variant="outline" size="sm">View</Button>
+                      <Button variant="outline" size="sm" onClick={() => navigate('/summary')}>View</Button>
                     </div>
                   </div>
                 </CardContent>

@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Sparkles, Star, Lightbulb, TrendingUp } from "lucide-react";
 import { toast } from "sonner";
 import { Progress } from "@/components/ui/progress";
+import { supabase } from "@/integrations/supabase/client";
 
 const GiveFeedback = () => {
   const navigate = useNavigate();
@@ -21,14 +22,19 @@ const GiveFeedback = () => {
   const peerName = "Sarah Chen";
   const peerRole = "Product Manager";
 
-  const handleToneCheck = (text: string, field: "strengths" | "growthAreas") => {
-    // Simulated AI tone guidance
-    if (text.toLowerCase().includes("bad") || text.toLowerCase().includes("terrible") || text.toLowerCase().includes("poor")) {
-      setAiToneGuidance("💡 Try rephrasing more constructively! Focus on behaviors and impact rather than judgments.");
-    } else if (text.length > 50) {
-      setAiToneGuidance("✨ Great! Your feedback is constructive and specific.");
-    } else {
-      setAiToneGuidance("");
+  const handleToneCheck = async (text: string) => {
+    try {
+      if (!text.trim()) {
+        setAiToneGuidance("");
+        return;
+      }
+      const { data, error } = await supabase.functions.invoke("tonality", {
+        body: { text },
+      });
+      if (error) throw error;
+      setAiToneGuidance(data?.analysis || data?.content || "");
+    } catch (e) {
+      setAiToneGuidance("Couldn't analyze tone right now. Please try again.");
     }
   };
 
@@ -123,7 +129,6 @@ const GiveFeedback = () => {
                 onChange={(e) => {
                   if (e.target.value.length <= maxChars) {
                     setStrengths(e.target.value);
-                    handleToneCheck(e.target.value, "strengths");
                   }
                 }}
                 className="min-h-32 resize-none"
@@ -136,6 +141,10 @@ const GiveFeedback = () => {
                 >
                   <Sparkles className="w-3 h-3 mr-1" />
                   AI Example
+                </Button>
+                <Button variant="secondary" size="sm" onClick={() => handleToneCheck(strengths)}>
+                  <Sparkles className="w-3 h-3 mr-1" />
+                  Check Tone
                 </Button>
                 <span className="text-sm text-muted-foreground">
                   {strengths.length}/{maxChars}
@@ -162,7 +171,6 @@ const GiveFeedback = () => {
                 onChange={(e) => {
                   if (e.target.value.length <= maxChars) {
                     setGrowthAreas(e.target.value);
-                    handleToneCheck(e.target.value, "growthAreas");
                   }
                 }}
                 className="min-h-32 resize-none"
@@ -175,6 +183,10 @@ const GiveFeedback = () => {
                 >
                   <Sparkles className="w-3 h-3 mr-1" />
                   AI Example
+                </Button>
+                <Button variant="secondary" size="sm" onClick={() => handleToneCheck(growthAreas)}>
+                  <Sparkles className="w-3 h-3 mr-1" />
+                  Check Tone
                 </Button>
                 <span className="text-sm text-muted-foreground">
                   {growthAreas.length}/{maxChars}

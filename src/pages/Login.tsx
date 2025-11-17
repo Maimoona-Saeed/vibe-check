@@ -29,7 +29,7 @@ const Login = () => {
           </div>
           <div>
             <CardTitle className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Vibe Code
+              Acme Quarterly Peer Feedback
             </CardTitle>
             <CardDescription className="text-base mt-2">
               Your quarterly peer feedback companion
@@ -76,7 +76,7 @@ const Login = () => {
             </div>
 
             <Button type="submit" className="w-full h-11 text-base" size="lg">
-              Continue to Vibe Code
+              Continue to Acme Quarterly Peer Feedback
             </Button>
           </form>
 
